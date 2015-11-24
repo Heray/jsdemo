@@ -136,7 +136,7 @@ function drawChart() {
   visualizeData = google.visualization.arrayToDataTable(chartData);
 
   var chart = new google.visualization.AreaChart(document.getElementById('appnexus_div'));
-  //chart.draw(visualizeData, options);
+  chart.draw(visualizeData, options);
 
 
   // loadTimeToState(1);
