@@ -191,6 +191,10 @@ body {
 
 <script>
 
+var buyers = [
+	'GroupM', 'Console', 'Xaxis', 'AT&T', 'Netflix', 'Xaxis', 'Netflix', 'Ebay', 'Amazon', 'Console'
+]
+
 var currAdId = 0;
 
 function nextImpClicked() {
@@ -229,8 +233,11 @@ function adCaching() {
 	$('#buyer').html('Contacting AppNexus...');
 
 	setTimeout(function() {
-		$('#price').html('$3.2').show();
-		$('#buyer').html('by Xaxis');	
+		var p = Math.round(Math.random() * 30 + 10)/10;
+		var b = buyers[currAdId];
+
+		$('#price').html('$' + p).show();
+		$('#buyer').html('by ' + b);	
 		$('#cached-ad').show();	
 	}, 1500);
 }
