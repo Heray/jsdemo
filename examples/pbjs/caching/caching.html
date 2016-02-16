@@ -234,7 +234,7 @@ function adCaching() {
 
 	setTimeout(function() {
 		var p = Math.round(Math.random() * 30 + 10)/10;
-		var b = buyers[currAdId];
+		var b = buyers[(currAdId + 1) % 10];
 
 		$('#price').html('$' + p).show();
 		$('#buyer').html('by ' + b);	
