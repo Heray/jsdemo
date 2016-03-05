@@ -1,0 +1,57 @@
+<html>
+
+<head>
+
+<script src="prebid_loader.js" async></script>
+
+<script>
+    var googletag = googletag || {};
+    googletag.cmd = googletag.cmd || [];
+    
+    (function() {
+        var gads = document.createElement('script');
+        gads.async = true;
+        gads.type = 'text/javascript';
+        var useSSL = 'https:' == document.location.protocol;
+        gads.src = (useSSL ? 'https:' : 'http:') +
+        '//www.googletagservices.com/tag/js/gpt.js';
+        var node = document.getElementsByTagName('script')[0];
+        node.parentNode.insertBefore(gads, node);
+    })();
+</script>
+
+<script>
+    googletag.cmd.push(function() {
+        var rightSlot = googletag.defineSlot('/19968336/header-bid-tag-0', [[300, 250], [300, 600]], 'div-gpt-ad-1438287399331-0').addService(googletag.pubads());
+
+        var topSlot = googletag.defineSlot('/19968336/header-bid-tag1', [[728, 90], [970, 90]], 'div-gpt-ad-1438287399331-1').addService(googletag.pubads());
+
+        googletag.pubads().enableSingleRequest();
+        googletag.enableServices();   
+    });
+    </script>
+</head>
+
+<body>
+    <h2>Prebid.js Example</h2>
+
+    <h5>Div-1, 300x250 or 300x600</h5>
+
+    <!-- /19968336/pbjs-right1-300x250-300x600 -->
+    <div id='div-gpt-ad-1438287399331-0'>
+        <script type='text/javascript'>
+            googletag.cmd.push(function() { googletag.display('div-gpt-ad-1438287399331-0'); });
+        </script>
+    </div>
+
+    <h5>Div-2, 728x90 or 970x90</h5>
+    <!-- /19968336/PBJS-top-728x90-970x90 -->
+    <div id='div-gpt-ad-1438287399331-1'>
+        <script type='text/javascript'>
+            googletag.cmd.push(function() { googletag.display('div-gpt-ad-1438287399331-1'); });
+        </script>
+    </div>
+
+</body>
+
+</html>
