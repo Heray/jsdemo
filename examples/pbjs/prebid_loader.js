@@ -1,5 +1,5 @@
 // All the customizable params
-var PREBID_TIMEOUT = 1000;
+var PREBID_TIMEOUT = 500;
 
 var adUnits = [{
     code: '/19968336/header-bid-tag-0',
