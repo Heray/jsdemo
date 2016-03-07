@@ -42,6 +42,7 @@ setTimeout(function() {
 }, PREBID_TIMEOUT);
 
 function sendDFPRequest() {
+    if (pbjs.DfpRequestSent) return;
     googletag.cmd.push(function() {
         pbjs.que.push(function() {
             pbjs.setTargetingForGPTAsync();
@@ -51,6 +52,7 @@ function sendDFPRequest() {
         var firstSlotId = googletag.pubads().getSlots()[0].getSlotElementId();
         googletag.display(firstSlotId);
     });
+    pbjs.DfpRequestSent = true;
 }
 
 var pbjs = pbjs || {};
@@ -67,5 +69,9 @@ pbjs.que = pbjs.que || [];
 
 pbjs.que.push(function() {
     pbjs.addAdUnits(adUnits);
-    pbjs.requestBids();
+    pbjs.requestBids({
+        bidsBackHandler: function() {
+            sendDFPRequest();
+        }
+    });
 });

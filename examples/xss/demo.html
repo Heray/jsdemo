@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    div.ad {
+      display:inline-block;
+      width:300px;
+      height:250px;
+    }
+</style>
+</head>
+<body>
+<div class="ad">
+<!-- BEGIN JS TAG - XSS test - creative with unencoded referer < - DO NOT MODIFY -->
+<SCRIPT SRC="http://ib.adnxs.com/ttj?id=6555949" TYPE="text/javascript"></SCRIPT>
+<!-- END TAG -->
+</div>
+<div class="ad">
+<!-- BEGIN JS TAG - XSS test - creative with encoded referer < - DO NOT MODIFY -->
+<SCRIPT SRC="http://ib.adnxs.com/ttj?id=6555950" TYPE="text/javascript"></SCRIPT>
+<!-- END TAG -->
+</div>
+</body>
+</html>
