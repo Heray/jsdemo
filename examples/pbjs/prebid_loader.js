@@ -2,7 +2,7 @@
 var PREBID_TIMEOUT = 500;
 
 var adUnits = [{
-    code: '/19968336/header-bid-tag-0',
+    code: 'div-gpt-ad-1438287399331-0',
     sizes: [[300, 250], [300, 600]],
     bids: [{
         bidder: 'appnexus',
@@ -11,7 +11,7 @@ var adUnits = [{
         }
     }]
 },{
-    code: '/19968336/header-bid-tag1',
+    code: 'div-gpt-ad-1438287399331-1',
     sizes: [[728, 90], [970, 90]],
     bids: [{
         bidder: 'appnexus',
@@ -34,6 +34,7 @@ googletag.cmd = googletag.cmd || [];
 googletag.cmd.unshift(function() {
     googletag.eS = googletag.enableServices;
     googletag.enableServices = function(){};
+    console.log('enableServices overwritten.' + new Date().getTime())
 });
 
 // Send imps to DFP after the timeout milliseconds.
@@ -49,8 +50,8 @@ function sendDFPRequest() {
         });
         
         googletag.eS();
-        var firstSlotId = googletag.pubads().getSlots()[0].getSlotElementId();
-        googletag.display(firstSlotId);
+        var slots = googletag.pubads().getSlots();
+        if (slots.length > 0) googletag.display(slots[0].getSlotElementId());
     });
     pbjs.DfpRequestSent = true;
 }

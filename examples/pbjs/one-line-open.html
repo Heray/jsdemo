@@ -2,8 +2,34 @@
 
 <head>
 
+<script src="//acdn.adnxs.com/prebid/prebid.js" async></script>
+<script>
+var PREBID_TIMEOUT = 500;
 
-<script src="prebid_loader.js" async></script>
+var adUnits = [{
+    code: 'div-gpt-ad-1438287399331-0',
+    sizes: [[300, 250], [300, 600]],
+    bids: [{
+        bidder: 'appnexus',
+        params: {
+           placementId: '4799418'
+        }
+    }]
+},{
+    code: '/19968336/header-bid-tag1',
+    sizes: [[728, 90], [970, 90]],
+    bids: [{
+        bidder: 'appnexus',
+        params: {
+           placementId: '4799418'
+        }
+    }]
+}];
+
+// == DO NOT MODIFY == //
+var pbjs=pbjs||{};pbjs.que=pbjs.que||[];var googletag=googletag||{};googletag.cmd=googletag.cmd||[],pbjs.sendDFPRequest=function(){pbjs.DfpRequestSent||(googletag.cmd.push(function(){pbjs.que.push(function(){pbjs.setTargetingForGPTAsync()}),googletag.enableServices();var e=googletag.pubads().getSlots();e.length>0&&googletag.display(e[0].getSlotElementId())}),pbjs.DfpRequestSent=!0)},setTimeout(function(){pbjs.sendDFPRequest()},PREBID_TIMEOUT),pbjs.que.push(function(){pbjs.addAdUnits(adUnits),pbjs.requestBids({bidsBackHandler:function(){pbjs.sendDFPRequest()}})});
+</script>
+
 
 <script>
     var googletag = googletag || {};
@@ -28,8 +54,7 @@
         var topSlot = googletag.defineSlot('/19968336/header-bid-tag1', [[728, 90], [970, 90]], 'div-gpt-ad-1438287399331-1').addService(googletag.pubads());
 
         googletag.pubads().enableSingleRequest();
-        googletag.enableServices();
-        console.log('page enableServices called.' + new Date().getTime())
+        //googletag.enableServices();   
     });
     </script>
 </head>
@@ -42,7 +67,7 @@
     <!-- /19968336/pbjs-right1-300x250-300x600 -->
     <div id='div-gpt-ad-1438287399331-0'>
         <script type='text/javascript'>
-            googletag.cmd.push(function() { googletag.display('div-gpt-ad-1438287399331-0'); console.log('display called.' + new Date().getTime())});
+            googletag.cmd.push(function() { googletag.display('div-gpt-ad-1438287399331-0'); });
         </script>
     </div>
 
