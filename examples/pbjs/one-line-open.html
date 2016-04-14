@@ -4,6 +4,9 @@
 
 <script src="//acdn.adnxs.com/prebid/prebid.js" async></script>
 <script>
+var pbjs = pbjs || {};
+pbjs.que = pbjs.que || [];
+
 var PREBID_TIMEOUT = 500;
 
 var adUnits = [{
@@ -26,8 +29,42 @@ var adUnits = [{
     }]
 }];
 
-// == DO NOT MODIFY == //
-var pbjs=pbjs||{};pbjs.que=pbjs.que||[];var googletag=googletag||{};googletag.cmd=googletag.cmd||[],pbjs.sendDFPRequest=function(){pbjs.DfpRequestSent||(googletag.cmd.push(function(){pbjs.que.push(function(){pbjs.setTargetingForGPTAsync()}),googletag.enableServices();var e=googletag.pubads().getSlots();e.length>0&&googletag.display(e[0].getSlotElementId())}),pbjs.DfpRequestSent=!0)},setTimeout(function(){pbjs.sendDFPRequest()},PREBID_TIMEOUT),pbjs.que.push(function(){pbjs.addAdUnits(adUnits),pbjs.requestBids({bidsBackHandler:function(){pbjs.sendDFPRequest()}})});
+pbjs.que.push(function() {
+    pbjs.addAdUnits(adUnits);
+    pbjs.requestBids({
+        timeout: 1500,
+        bidsBackHandler: writeToGPT
+    });
+});
+
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+googletag.cmd.push(function() {
+    googletag.pubads().disableInitialLoad();
+});
+
+var ads = {
+    '300': null,
+    '728': null
+}
+
+function writeToGPT() {
+    googletag.cmd.push(function() {
+        prebidRes = pbjs.getBidResponses();
+        console.log(bidRes);
+
+        var slots = googletag.pubads().getSlots();
+        for (var i = 0; i < slots.length; i++) {
+            var slot = slots[i];
+
+            slot.addService(googletag.content());
+            googletag.enableServices();   
+            
+            googletag.content().setContent(slot, '<h1>Hey</h1>');    
+        }
+    });
+}
+
 </script>
 
 
@@ -54,7 +91,7 @@ var pbjs=pbjs||{};pbjs.que=pbjs.que||[];var googletag=googletag||{};googletag.cm
         var topSlot = googletag.defineSlot('/19968336/header-bid-tag1', [[728, 90], [970, 90]], 'div-gpt-ad-1438287399331-1').addService(googletag.pubads());
 
         googletag.pubads().enableSingleRequest();
-        //googletag.enableServices();   
+        googletag.enableServices();   
     });
     </script>
 </head>
