@@ -37,7 +37,7 @@
       bidsBackHandler: function(bidResponses) {
         var targetingParams = pbjs.getAdserverTargeting();
         console.log(targetingParams);
-        alert(JSON.stringify(targetingParams, null, '  '));
+        alert("Add below keywords to tq.keywords now, before ad requests are made:\n" + JSON.stringify(targetingParams, null, '  '));
 
         // TODO, add targetingParams into tq.keywords here:
         // tq.keywords = ((tq.keywords)&&(tq.keywords!=''))?tq.keywords+'':'';
