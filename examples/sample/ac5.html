@@ -1,0 +1,97 @@
+
+<!doctype html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<title>Prebid Sandbox</title>
+<script>var abcn_ui;</script>
+<script src="http://a.abcnews.com/assets/beta/js/lib.js?v=90"></script>
+
+<!-- ADDED JS CODE -->
+
+<script type="text/javascript" src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js" async></script>
+<div id="container">Bid Response</div>
+<script>
+  var pbjs = pbjs || {};
+  pbjs.que = pbjs.que || [];
+
+  var adUnits = [{
+    code: 'adunit-code-1',
+    sizes: [[300, 250], [300, 600]],
+    bids: [{
+      bidder: 'appnexus',
+      params: { placementId: '4799418' }
+    }
+    // Add other bidders here
+    ]
+  }];
+
+  pbjs.que.push(function() {
+    pbjs.addAdUnits(adUnits);
+    pbjs.requestBids({
+    	timeout: 500,
+      // This callback gets triggered when all bids for this
+      // ad unit come back. 
+      bidsBackHandler: function(bidResponses) {
+        var targetingParams = pbjs.getAdserverTargeting();
+        console.log(targetingParams);
+        alert(JSON.stringify(targetingParams, null, '  '));
+
+        // TODO, add targetingParams into tq.keywords here:
+        // tq.keywords = ((tq.keywords)&&(tq.keywords!=''))?tq.keywords+'':'';
+
+        rain.helpers.makeItRain();
+      }
+    });
+  });
+</script>
+
+
+<!-- ADDED JS CODE END -->
+
+
+
+<script type="text/javascript">
+var digAdData;
+var digGetAd = function(){};
+tq = new Object();
+tq.path = '/News/GeneralNews/story/';
+tq.caid = 'News/GeneralNews';
+tq.keywords = ((tq.keywords)&&(tq.keywords!=''))?tq.keywords+'':'';
+tq.show = '';
+tq.recipes = '';
+tq.id = '36447575';
+tq.section = 'us';
+tq.realsection = '';
+tq.subsection = '';
+tq.altsection = 'default';
+tq.objType = 'story';
+tq.byline = '';
+tq.othersubs = '';
+</script>
+<script type='text/javascript' src='http://qa.n7.abcnews.go.com/assets/js/adCallOverride.js?v=1'></script>
+<script type="text/javascript">
+var fwNetworkId = '168233';
+var fwSectionFallbackId = '106776';
+var fwAdSystem = true;
+</script>
+<script type="text/javascript" src="http://qa.n7.abcnews.go.com/assets/js/min/fw.js?v=33"></script>
+
+
+</head>
+
+<body>
+
+
+Here is a call for an ad with dynamic construction of the markup response...<p>
+
+<div class="ad-slot ad-wrapper ad-slot-incontent-strip ad-slot-incontent" data-rain-drop="Rectangle">
+
+<!--<script type="text/javascript">digGetAd("Rectangle");</script>-->
+
+
+  
+</body>
+</html>

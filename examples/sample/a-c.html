@@ -1,0 +1,82 @@
+
+<!doctype html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+
+<title>Prebid Sandbox</title>
+
+
+<script>
+pbjs = {};
+// tq = tq || new Object();
+// tq.keywords
+
+abcq = [];
+
+function prebidReady() {
+  if (pbjs.initAdserverSet) return;
+  pbjs.initAdserverSet = true;
+  for (var i = 0; i < abcq.length; i++) {
+  	abcq[i];
+  }
+}
+
+setTimeout(function() {
+	prebidReady();
+}, 1500)
+</script>
+
+  
+<script type="text/javascript">
+var digAdData;
+var digGetAd = function(){};
+var tq = tq || new Object();
+tq.path = '/News/GeneralNews/story/';
+tq.caid = 'News/GeneralNews';
+tq.keywords = ((tq.keywords)&&(tq.keywords!=''))?tq.keywords+'':'';
+tq.show = '';
+tq.recipes = '';
+tq.id = '36447575';
+tq.section = 'us';
+tq.realsection = '';
+tq.subsection = '';
+tq.altsection = 'default';
+tq.objType = 'story';
+tq.byline = '';
+tq.othersubs = '';
+</script>
+<script type='text/javascript' src='http://qa.n7.abcnews.go.com/assets/js/adCallOverride.js?v=1'></script>
+<script type="text/javascript">
+var fwNetworkId = '168233';
+var fwSectionFallbackId = '106776';
+var fwAdSystem = true;
+</script>
+<script type="text/javascript" src="http://qa.n7.abcnews.go.com/assets/js/min/fw.js?v=33"></script>
+
+</head>
+
+<body>
+
+
+Here is a call for an ad with dynamic construction of the markup response...<p>
+	
+	<!-- <div class="ad-slot ad-slot-banner ad-wrapper" style="text-align: center;" data-rain-drop="Banner" data-slot-type="banner" data-slot-kvps="pos=banner"></div> 
+	 -->
+	<!-- <div class="ad-slot ad-wrapper ad-slot-incontent-strip ad-slot-incontent" data-rain-drop="Rectangle"> -->
+
+<script type="text/javascript">
+digGetAd("Banner");
+	//abcq.push(function() {
+		setTimeout(function() {
+			//digGetAd("Rectangle")
+		}, 0)
+		//digGetAd("Rectangle")
+	//})
+</script>
+
+
+  
+</body>
+</html>
