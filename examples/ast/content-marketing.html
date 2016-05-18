@@ -1,0 +1,85 @@
+
+<html>
+
+<head>
+    <script type="text/javascript">
+    //create empty apn_csa object if it doesn't exist
+    var apntag = apntag || {};
+    //create a queue on the apn_csa object        
+    apntag.anq = apntag.anq || [];
+
+    //load ast.js - async
+    (function() {
+        var d = document, scr = d.createElement('script'), pro = d.location.protocol,
+        tar = d.getElementsByTagName("head")[0];
+        scr.type = 'text/javascript';  scr.async = true;
+        scr.src = ((pro === 'https:') ? 'https' : 'http') + '://acdn.adnxs.com/ast/ast.js';
+        if(!apntag.l){apntag.l=true; tar.insertBefore(scr, tar.firstChild);}
+    })();
+
+    //push commands to loading queue, to allow for async loading
+    apntag.anq.push(function() {
+        //apntag.setEndpoint('http://b.adnxs.com');
+        //set global page options
+        apntag.setPageOpts({
+            member: 958,
+            targetingParams: {
+                age: '25',
+                gender: 'm'
+            }
+        });
+
+        //define ad tag
+        apntag.defineTag({
+            //invCode: 'ABC1234',
+            tagId: 5796745,
+            //sizes: [728,90],
+            targetId: 'apn_ad_40954389053',
+        });
+
+
+        apntag.defineTag({
+            //invCode: 'ABC1234',
+            tagId: 4469257,
+            //sizes : [[336,280], [300,250], [336,600]],
+            targetId: 'apn_ad_5675675647',
+        });
+
+
+        //start loading tags
+        apntag.loadTags();
+    
+
+    });
+    </script>
+</head>
+
+<body>
+    <h1>FIRST PARTY 8.1</h1>
+    <p>Placement: 958/ABC1234</p>
+
+
+    <p><button onclick="apntag.refresh()">Refresh All</button></p>
+
+    <div id="apn_ad_40954389053">
+        <script type="text/javascript">
+        apntag.anq.push(function() {
+            //signal to script that this DOM elemetn has been loaded and is ready to be populated with an ad
+            apntag.showTag('apn_ad_40954389053');
+        });
+        </script>
+    </div>
+
+    <br>
+    <div id="apn_ad_5675675647">
+        <script type="text/javascript">
+        apntag.anq.push(function() {
+            apntag.showTag('apn_ad_5675675647');
+        });
+        </script>
+    </div>
+    <br>
+ 
+</body>
+
+</html>
