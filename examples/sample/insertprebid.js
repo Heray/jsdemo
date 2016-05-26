@@ -135,7 +135,7 @@ function writeToGPT() {
           pbjs.renderAd(ifE.contentWindow.document, adid);
       }
 
-      googletag.pubads().refresh();
+      //googletag.pubads().refresh();
   });
 }
 
