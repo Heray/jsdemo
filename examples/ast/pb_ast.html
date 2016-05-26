@@ -1,0 +1,166 @@
+
+<html>
+<head>
+
+	<script type="text/javascript" src="//acdn.adnxs.com/prebid/not-for-prod/prebid.js"></script>
+
+	<script type="text/javascript">
+
+		// ===== EDIT HEADER BIDDING SETTING SECTION ===== //
+		var PREBID_TIMEOUT = 1000;
+		var adUnits = [{
+			code: 'apn_ad_1',
+			sizes: [[300, 250]],
+			bids: [{
+				bidder: 'appnexus',
+				params: { placementId: '5823281' }
+			}]
+		},{
+			code: 'apn_ad_2',
+			sizes: [[300, 600]],
+			bids: [{
+        bidder: 'rubicon',
+        params: {
+            accountId: "14062",
+            siteId: "70608",
+            zoneId: "335918",
+            //sizes: [15],
+            userId: "12346",
+            keywords: ["a", "b", "c"],
+            inventory: { rating: "5-star", prodtype: "tech" },
+            visitor: { ucat: "new", search: "iphone" }
+        }
+    	}]
+		}];
+		// ===== HEADER BIDDING SETTING SECTION END ===== //
+
+
+		// ===== BELOW ARE STATIC PREBID SECTION ===== //
+		var pbjs = pbjs || {};
+		pbjs.que = pbjs.que || [];
+
+		// Attach keyword targeting to AST. Do not modify.
+		function setANTargeting(){			
+			var targetings = pbjs.getAdserverTargeting();
+			for (var key in targetings) {
+				if (targetings.hasOwnProperty(key)) {
+					var obj = targetings[key];
+					var tab = {};
+					for (var key1 in obj){
+						if (obj.hasOwnProperty(key1)) tab[key1] = obj[key1];
+					}
+					apntag.modifyTag(key, {"keywords": tab});
+				}
+			}
+		}
+
+		// Once all bids are back or when timeout is hit,
+		// signal the ad server tag AST to send out ad requests.
+		// Do not modify.
+		function sendAdserverRequest(){
+			if (pbjs.adserverRequestSent) return;
+			pbjs.adserverRequestSent = true;
+			apntag.anq.push(function(){
+					setANTargeting();
+					apntag.loadTags();
+			});
+		}
+		setTimeout(sendAdserverRequest, PREBID_TIMEOUT);
+		
+		// Configure the prebid keywords to AST. Do not modify.
+		pbjs.bidderSettings = {
+			standard: {
+				adserverTargeting: [{
+					key: "hb_bidder",
+					val: function(bidResponse) {
+						return bidResponse.bidderCode;
+					}
+				}, {
+					key: "pt0",
+					val: function(bidResponse) {
+						return bidResponse.adId;
+					}
+				}, {
+					key: "hb_pb",
+					val: function(bidResponse) {
+						return bidResponse.pbMg * 100;
+					}
+				}]
+			}
+		};
+
+		// Send out prebid requests to header bidding partners.
+		pbjs.que.push(function() {
+			pbjs.addAdUnits(adUnits);
+			pbjs.requestBids({
+				bidsBackHandler: function(bidResponses) {
+					sendAdserverRequest();
+				}
+			})
+		});
+
+		// ===== PREBID SECTION END ===== //
+
+	</script>
+
+	<!-- AST implementation -->
+	<!-- Change: apntag.loadTags() is moved to sendAdserverRequest() -->
+
+	<script type="text/javascript">
+    var apntag = apntag || {};
+    apntag.anq = apntag.anq || [];
+
+    (function() {
+    	var scrEl = document.createElement("script");
+    	scrEl.type = "text/javascript";
+    	scrEl.async = true;
+    	scrEl.src = "http://acdn.adnxs.com/ast/ast.js";
+      var targetEl = document.getElementsByTagName("head")[0];
+      targetEl.insertBefore(scrEl, targetEl.firstChild);
+    })();
+
+    apntag.anq.push(function() {
+      apntag.setPageOpts({
+      	member: 958,
+      	disablePsa: true
+      });
+
+      apntag.defineTag({
+      	tagId: 7657641 ,
+      	sizes: [300,250],
+      	targetId: 'apn_ad_1'
+      });
+      apntag.defineTag({
+      	tagId: 7657643 ,
+      	sizes: [300,600],
+      	targetId: 'apn_ad_2'
+      });
+    });
+	</script>
+</head>
+
+<body>
+	<h1>AST with prebid test page</h1>
+
+	<p>Placement 1 (AppNexus Test)</p>
+	<div id="apn_ad_1" >
+		<script type="text/javascript">
+			apntag.anq.push(function() {
+				//signal to script that this DOM element has been loaded and is ready to be populated with an ad
+				apntag.showTag('apn_ad_1');
+			});
+		</script>
+	</div>
+	<p>Placement 2 (Rubicon Production Not Always Bid)</p>
+	<div id="apn_ad_2" >
+		<script type="text/javascript">
+			apntag.anq.push(function() {
+				//signal to script that this DOM element has been loaded and is ready to be populated with an ad
+				apntag.showTag('apn_ad_2');
+			});
+		</script>
+	</div>
+
+</body>
+
+</html>
